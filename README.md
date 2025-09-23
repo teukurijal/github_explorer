@@ -2,6 +2,8 @@
 
 Search GitHub users and explore their repositories with modern UI/UX.
 
+🚀 **Live Demo**: https://teukurijal.github.io/github_explorer/
+
 ## Features
 
 - 🔍 Search GitHub users (up to 5 results)
@@ -24,7 +26,7 @@ Search GitHub users and explore their repositories with modern UI/UX.
 
 ```bash
 # Clone and install
-git clone <repository-url>
+git clone https://github.com/teukurijal/github_explorer.git
 cd github_explorer
 npm install
 
