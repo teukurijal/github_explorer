@@ -5,7 +5,7 @@ import path from 'path'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: process.env.NODE_ENV === 'production' ? '/atask-net/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/github_explorer/' : '/',
   resolve: {
     alias: {
       '@': path.resolve(__dirname, './src'),

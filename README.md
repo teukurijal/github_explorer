@@ -25,7 +25,7 @@ Search GitHub users and explore their repositories with modern UI/UX.
 ```bash
 # Clone and install
 git clone <repository-url>
-cd atask-net
+cd github_explorer
 npm install
 
 # Setup environment
