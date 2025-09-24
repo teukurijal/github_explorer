@@ -17,7 +17,6 @@ Search GitHub users and explore their repositories with modern UI/UX.
 
 - **React 19** + TypeScript
 - **Vite** + Tailwind CSS
-- **TanStack Query** for caching
 - **Clean Architecture** pattern
 - **Vitest** + Testing Library
 - **Path aliases** for clean imports
@@ -64,17 +63,16 @@ Clean Architecture implementation:
 
 ```
 src/
-├── domain/          # Business entities (User, Repository)
-├── application/     # Use cases (SearchUsers, GetRepos)
-├── infrastructure/  # External deps (GitHub API, Network)
+├── domain/          # Business entities (User, Repository, NetworkStatus)
+├── application/     # Use cases (SearchUsers, GetRepos, NetworkStatus)
+├── infrastructure/  # External deps (GitHub API, Network, Container)
 ├── ui/             # Components and hooks
-├── services/       # API layer
 └── test/           # Test setup
 ```
 
 ## Key Features
 
-- **Debounced search** (300ms) with TanStack Query caching
+- **Debounced search** (300ms) with custom state management
 - **Keyboard navigation** with arrow keys and shortcuts
 - **Loading states** with clear/X button management
 - **Error boundaries** and network status monitoring
@@ -87,8 +85,17 @@ src/
 Modern React development practices:
 - Clean Architecture pattern
 - TypeScript + React 19
-- TanStack Query for state management
+- Custom hooks for state management
 - Path aliases for clean imports
 - Comprehensive testing strategy
 - Performance optimization
 - Accessibility features
+
+## Architecture Highlights
+
+- **Domain-driven design** with entities and value objects
+- **Dependency injection** through simplified container
+- **Repository pattern** for data access
+- **Use case pattern** for business logic
+- **Environment-based configuration** with BASE_URL
+- **Comprehensive error handling** with domain errors
