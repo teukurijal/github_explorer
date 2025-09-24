@@ -47,11 +47,3 @@ export class ApiError extends DomainError {
   }
 }
 
-export class NotFoundError extends DomainError {
-  readonly code = 'NOT_FOUND';
-  readonly userMessage = 'The requested resource was not found.';
-
-  constructor(message: string, cause?: Error) {
-    super(message, cause);
-  }
-}

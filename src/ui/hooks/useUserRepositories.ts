@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Repository } from '@domain/entities/Repository';
 import { User } from '@domain/entities/User';
-import { GetUserRepositoriesUseCase } from '@application/useCases/GetUserRepositoriesUseCase';
 import { DomainError, ApiError } from '@application/errors/DomainError';
 import { container } from '@infrastructure/container/Container';
 
@@ -17,7 +16,7 @@ export const useUserRepositories = (user: User | null): UseUserRepositoriesResul
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<DomainError | null>(null);
 
-  const getUserRepositoriesUseCase = container.get<GetUserRepositoriesUseCase>('getUserRepositoriesUseCase');
+  const getUserRepositoriesUseCase = container.getUserRepositoriesUseCase;
 
   const fetchRepositories = async () => {
     if (!user) {

@@ -18,17 +18,11 @@ export class SearchQuery {
     return new SearchQuery(trimmed);
   }
 
-  static createEmpty(): SearchQuery {
-    return new SearchQuery('');
-  }
 
   get isEmpty(): boolean {
     return this.value.length === 0;
   }
 
-  get hasMinimumLength(): boolean {
-    return this.value.length >= 1;
-  }
 
   toString(): string {
     return this.value;

@@ -4,8 +4,6 @@ export interface GitHubUser {
   avatar_url: string;
   html_url: string;
   name: string | null;
-  company: string | null;
-  location: string | null;
   bio: string | null;
   public_repos: number;
   followers: number;
@@ -34,7 +32,3 @@ export interface GitHubRepository {
   fork: boolean;
 }
 
-export interface ApiError {
-  message: string;
-  status?: number;
-}

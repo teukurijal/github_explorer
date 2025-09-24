@@ -3,33 +3,18 @@ import { render, screen } from '@testing-library/react';
 import App from '@/App';
 
 // Mock the container and use cases
-const mockSearchUsersUseCase = {
-  execute: vi.fn()
-};
-
-const mockGetUserRepositoriesUseCase = {
-  execute: vi.fn()
-};
-
-const mockMonitorNetworkStatusUseCase = {
-  getCurrentStatus: vi.fn(),
-  subscribeToStatusChanges: vi.fn()
-};
-
 vi.mock('@infrastructure/container/Container', () => ({
   container: {
-    get: vi.fn((key: string) => {
-      switch (key) {
-        case 'searchUsersUseCase':
-          return mockSearchUsersUseCase;
-        case 'getUserRepositoriesUseCase':
-          return mockGetUserRepositoriesUseCase;
-        case 'monitorNetworkStatusUseCase':
-          return mockMonitorNetworkStatusUseCase;
-        default:
-          return {};
-      }
-    })
+    searchUsersUseCase: {
+      execute: vi.fn()
+    },
+    getUserRepositoriesUseCase: {
+      execute: vi.fn()
+    },
+    monitorNetworkStatusUseCase: {
+      getCurrentStatus: vi.fn(),
+      subscribeToStatusChanges: vi.fn()
+    }
   }
 }));
 
@@ -46,11 +31,13 @@ vi.mock('@domain/valueObjects/NetworkStatus', () => ({
 }));
 
 describe('App', () => {
-  beforeEach(() => {
-    mockSearchUsersUseCase.execute.mockClear();
-    mockGetUserRepositoriesUseCase.execute.mockClear();
-    mockMonitorNetworkStatusUseCase.getCurrentStatus.mockReturnValue({ isOnline: true, state: 'online' });
-    mockMonitorNetworkStatusUseCase.subscribeToStatusChanges.mockReturnValue(() => {});
+  beforeEach(async () => {
+    const { container } = await import('@infrastructure/container/Container');
+    const { NetworkStatus } = await import('@domain/valueObjects/NetworkStatus');
+    vi.mocked(container.searchUsersUseCase.execute).mockClear();
+    vi.mocked(container.getUserRepositoriesUseCase.execute).mockClear();
+    vi.mocked(container.monitorNetworkStatusUseCase.getCurrentStatus).mockReturnValue(NetworkStatus.online());
+    vi.mocked(container.monitorNetworkStatusUseCase.subscribeToStatusChanges).mockReturnValue(() => {});
   });
 
   it('renders app header and search input', () => {

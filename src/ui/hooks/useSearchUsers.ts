@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import { User } from '@domain/entities/User';
-import { SearchUsersUseCase } from '@application/useCases/SearchUsersUseCase';
 import { DomainError, ApiError } from '@application/errors/DomainError';
 import { container } from '@infrastructure/container/Container';
 
@@ -16,7 +15,7 @@ export const useSearchUsers = (debouncedQuery: string): UseSearchUsersResult => 
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<DomainError | null>(null);
 
-  const searchUsersUseCase = container.get<SearchUsersUseCase>('searchUsersUseCase');
+  const searchUsersUseCase = container.searchUsersUseCase;
 
   const searchUsers = async (query: string) => {
     if (!query.trim()) {
